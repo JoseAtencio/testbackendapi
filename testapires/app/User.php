@@ -10,6 +10,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $table = 'user';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -41,6 +43,12 @@ class User extends Authenticatable
         "no_registered",
         "deleted_at"
     ];
+
+    
+    public function plans()
+    {
+        return $this->hasMany('App\User_plans', 'user_id');
+    }
 
     /**
      * The attributes that should be hidden for arrays.

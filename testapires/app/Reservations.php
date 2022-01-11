@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reservations extends Model
 {
+    protected $table = 'reservations';
+    
     protected $fillable = [
         "id",
 		"user_plan_id",
@@ -19,4 +21,20 @@ class Reservations extends Model
 		"updated_at",
 		"deleted_at"
     ];
-}
+
+
+
+    
+    public function userplans()
+    {
+        return $this->belongsTo('App\User_plans', 'user_plan_id');
+    }
+
+    public function route()
+    {
+        return $this->belongsTo('App\Routes', 'foreign_key', 'other_key');
+    }
+
+}   
+
+

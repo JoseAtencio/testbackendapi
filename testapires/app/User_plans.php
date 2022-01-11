@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class User_plans extends Model
 {
+
+	protected $table = 'user_plans';
+
     protected $fillable = [
         "id",
 		"user_id",
@@ -39,4 +42,16 @@ class User_plans extends Model
 		"credit_confirm_canceled",
 		"cost_center_id"
     ];
+
+
+	
+	public function user()
+	{
+		return $this->belongsTo('App\User', 'user_id');
+	}
+
+	public function reservations()
+	{
+		return $this->hasMany('App\Reservations', 'user_plan_id');
+	}
 }
